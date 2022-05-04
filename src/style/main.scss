@@ -22,7 +22,9 @@ body {
 }
 
 .app {
-    margin-top: 2rem;
     display: grid;
     justify-items: center;
 }
+
+@import "./variables.scss";
+@import "./navbars.scss";
