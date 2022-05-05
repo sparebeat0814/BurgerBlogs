@@ -7,7 +7,7 @@ export default class BottomNavBar extends Component {
             <div className='nav-items'>
                 <div className='logo'>
                   <div className='logo-bottom'>
-                  <img src={require('./logo/BURGER (1).jpg')} />
+                  <img src={require('./logo/BURGER (1).png')} />
                 </div>
                 </div>
                 <div className='copyright'>

@@ -5,6 +5,7 @@ export default class Blogs extends Component {
     return (
         <div>
             this is some cool filler content
+            <p>The blogs go here</p>
         </div>
    )
  }

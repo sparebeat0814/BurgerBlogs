@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default class TopNavBar extends Component {
   render() {
@@ -8,7 +8,7 @@ export default class TopNavBar extends Component {
         <div className='nav-items'>
         <div className='logo'>
         <div className='top-logo'>
-            <img src={require('./logo/BURGER (1).jpg')} />
+            <img src={require('./logo/BURGER (1).png')} />
         </div>
         </div>
         <div className='navBar-middle'>
@@ -16,17 +16,18 @@ export default class TopNavBar extends Component {
             <h1>BURGER BLOGS</h1>
         </div>
         </div>
+        
         <div className='nav-links-wrapper'>
-        <div className='nav-link'>
-            <NavLink exact to="/"> Home </NavLink>
+        <div className='nav-links'>
+            <Link exact to="/" activeClassName='nav-link'> Home </Link>
         </div>
 
-        <div className='nav-link'>
-            <NavLink exact to="/blogs"> Blogs </NavLink>
+        <div className='nav-links'>
+            <Link exact to="/blogs" activeClassName='nav-link'> Blogs </Link>
         </div>
 
-        <div className='nav-link'>
-            <NavLink exact to="/about"> about </NavLink>
+        <div className='nav-links'>
+            <Link exact to="/about" activeClassName='nav-link'> About </Link>
         </div>
         </div>
     </div>
