@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
 
 export default class TopNavBar extends Component {
   render() {
     return (
     <div className='navBar-wrapper'>
-        <div className='nav-items'>
         <div className='logo'>
         <div className='top-logo'>
             <img src={require('./logo/BURGER (1).png')} />
@@ -19,19 +17,22 @@ export default class TopNavBar extends Component {
         
         <div className='nav-links-wrapper'>
         <div className='nav-links'>
-            <Link exact to="/" activeClassName='nav-link'> Home </Link>
+            <a href="/"> Home </a>
+            {/* <NavLink exact to="/" /> */}
         </div>
 
         <div className='nav-links'>
-            <Link exact to="/blogs" activeClassName='nav-link'> Blogs </Link>
+            <a href="/blogs"> Blogs </a>
+            {/* <NavLink exact to="/blogs" /> */}
         </div>
 
         <div className='nav-links'>
-            <Link exact to="/about" activeClassName='nav-link'> About </Link>
+            <a href="/about"> About </a>
+            {/* <NavLink exact to="/about" /> */}
         </div>
         </div>
-    </div>
-    </div>
+        </div>
+
     );
   }
 }

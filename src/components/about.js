@@ -8,7 +8,10 @@ render() {
             <img src={require('./images/aboutburger.jpg')} />
         </div>
         <div className='right-side'>
+        <div className="burgerBlogsAboutH1">
             <h1>Burger Blogs</h1>
+            </div>
+
 
             <h2>About us</h2>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis quis odio laborum eius, eum libero ducimus quam alias sed voluptas dolorum modi atque commodi voluptate. Consectetur similique fugiat quidem perspiciatis!

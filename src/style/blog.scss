@@ -1,0 +1,39 @@
+.blog-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .content-container {
+        display: flex;
+        flex-direction: column;
+        width: 800px;
+        h1 {
+            font-size: 1.5em;
+            margin-bottom: 0px;
+        }
+
+        a {
+            text-decoration: none;
+            color: $lightBlue;
+            transition: 0.5s ease-in-out;
+
+            &:hover {
+                color: #6072cc;
+            }
+        }
+
+        .content {
+            font-size: large;
+            font-family: 'Poppins', sans-serif;
+            padding: 10px;
+        }
+        .imageURL-wrapper {
+            img {
+                margin: 15px 0px;
+                width: 100%;
+                height: 350px;
+                border-radius: 5px;
+                object-fit: cover;
+            }
+        }
+    }
+}

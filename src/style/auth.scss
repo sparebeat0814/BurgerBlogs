@@ -1,0 +1,48 @@
+.auth-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    .left-side {
+        margin-top: 5px;
+        margin-left: 5px;
+        img {
+            width: 100%;
+            border-radius: 5px;
+        }
+    }
+
+    
+
+    h1 {
+        font-size: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+
+.auth-form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    input {
+        background-color: $white;
+        border-radius: 5px;
+        padding: 5px;
+        margin: 5px;
+    }
+
+    button {
+        padding: 5px;
+        background-color: $orange;
+        border-radius: 5px;
+        width: 50px;
+        transition: ease-in-out 0.5s;
+
+        &:hover {
+           background-color: #cc730d; 
+        }
+    }
+
+}

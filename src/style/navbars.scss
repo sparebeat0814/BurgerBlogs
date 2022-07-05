@@ -1,6 +1,8 @@
 .navBar-wrapper {
     background-color: $purple;
     width: 100%;
+    display: flex;
+    align-items: center;
 
     img {
         width: 100px;
@@ -12,30 +14,47 @@
         padding: 10px;
     } 
 
-    .nav-items {
-        display: flex;
-        
-        align-items: center;
-    }
+
 
     .nav-links-wrapper {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
+
+        
+        
     } 
 
     .navBar-middle, .nav-link {
         padding: 18px;
     }
 
-    .nav-link {
-        text-decoration: none;
+
+
+    a {
+       font-size: large;
         color: $white;
+        padding: 50px;
+        display: flex;
+        justify-content: space-evenly;
+        text-decoration: none;
+        transition: ease-in-out 0.5s;
     }
+
+    a:hover {
+        color: $grey;
+    }
+
+   
 
     h1 {
         color: $orange;
+        font-size: xx-large;
     }
 }
+
+
+
+
 
 .navBar-wrapper-bottom {
     
@@ -46,6 +65,7 @@
    justify-content: center;
    background-color: $purple;
    width: 100%;
+   position:static;
 
    .logo-bottom {
        justify-content: center;
