@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, NavLink, Route, Switch } from "react-router-dom";
+import axios from 'axios';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -15,6 +16,8 @@ import Auth from './auth/auth';
 import Blog from './blog/blogs';
 import BlogDetail from './blog/blogdetail';
 import { library } from '@fortawesome/fontawesome-svg-core';
+
+
 
 library.add(faSpinner)
 
@@ -43,16 +46,35 @@ export default class App extends Component {
     })
   }
 
-  // checkLoginStatus() {
-  //   return axios.get("http://localhost:5000/protected", { withCredentials: true })
-  //   .then(response => {
-  //     console.log("logged_in return", response)
-  //   })
-  // }
+  
 
-  // componentDidMount() {
-  //   this.checkLoginStatus();
-  // }
+  checkLoginStatus() {
+    const token = sessionStorage.getItem('token');
+    // const token = JSON.parse(sessionStorage.getItem('token'));
+    console.log("---->",token);
+
+
+   axios.get('http://localhost:5000/protected', {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: 'Bearer ' +token
+    }
+    })
+    .then((response) => {
+      console.log("logged_in return", response)
+    })
+    .catch(error => {
+      console.log("error", error)
+    })}
+  
+
+  componentDidMount() {
+    this.checkLoginStatus();
+  }
+
+  
+
+  
 
   render() {
     return (

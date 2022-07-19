@@ -34,6 +34,7 @@ export default class Login extends Component {
         ).then(response => {
             if (response.status === 200) {
               this.props.handleSuccessfulAuth();
+              sessionStorage.setItem("token", response.data.token);
             } else {
               this.setState({
                 errorText: "Wrong email or password"
@@ -57,31 +58,6 @@ export default class Login extends Component {
 
         // console.log(sessionStorage.getItem('username'));
     }
-
-//     handleStorage(event) {
-
-//     // Save data to sessionStorage
-// sessionStorage.setItem('token', 'value');
-
-// // Get saved data from sessionStorage
-// let data = sessionStorage.getItem('token');
-
-//          // Get the text field that we're going to track
-// let field = document.getElementById("token");
-
-// // See if we have an autosave value
-// // (this will only happen if the page is accidentally refreshed)
-// if (sessionStorage.getItem("autosave")) {
-//   // Restore the contents of the text field
-//   field.value = sessionStorage.getItem("autosave");
-// }
-
-// // Listen for changes in the text field
-// field.addEventListener("change", function() {
-//   // And save the results into the session storage object
-//   sessionStorage.setItem("autosave", field.value);
-// });
-// }
 
 
 
