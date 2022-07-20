@@ -4,7 +4,9 @@ import axios from 'axios';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faSpinner
+  faSpinner,
+  faBan,
+  faFloppyDisk
 } from "@fortawesome/free-solid-svg-icons";
 
 import TopNavBar from './navBars/topNavBar';
@@ -19,7 +21,8 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 
 
 
-library.add(faSpinner)
+
+library.add(faSpinner, faBan, faFloppyDisk)
 
 export default class App extends Component {
   constructor(props) {
@@ -32,6 +35,7 @@ export default class App extends Component {
 
     this.handleSuccessfulLogin=this.handleSuccessfulLogin.bind(this);
     this.handleUnSuccessfulLogin=this.handleUnSuccessfulLogin.bind(this);
+    this.handleSuccessfulLogout=this.handleSuccessfulLogout.bind(this);
   }
 
   handleSuccessfulLogin() {
@@ -46,30 +50,52 @@ export default class App extends Component {
     })
   }
 
+
+  handleSuccessfulLogout() {
+    this.setState({
+      loggedInStatus: "NOT_LOGGED_IN"
+    })
+    sessionStorage.clear();
+    window.location="/"
+  }
   
 
   checkLoginStatus() {
     const token = sessionStorage.getItem('token');
     // const token = JSON.parse(sessionStorage.getItem('token'));
-    console.log("---->",token);
+    // console.log("---->",token);
 
 
-   axios.get('http://localhost:5000/protected', {
+   axios.get('https://burgerblogs.herokuapp.com/protected', {
       headers: {
         "Content-Type": "application/json",
         Authorization: 'Bearer ' +token
     }
     })
     .then((response) => {
-      console.log("logged_in return", response)
-    })
-    .catch(error => {
+      const loggedIn = response.data;
+      const loggedInStatus = this.state.loggedInStatus;
+
+      if (loggedIn && loggedInStatus === "LOGGED_IN") {
+        return loggedIn;
+      } else if (loggedIn && loggedInStatus === "NOT_LOGGED_IN") {
+        this.setState({
+          loggedInStatus: "LOGGED_IN"
+        });
+       } else if (!loggedIn && loggedInStatus === "LOGGED_IN") {
+        this.setState({
+          loggedInStatus: "NOT_LOGGED_IN"
+        })
+      }
+    }).catch(error => {
       console.log("error", error)
-    })}
+    })
+  }
   
 
   componentDidMount() {
     this.checkLoginStatus();
+    console.log(">---->",this.state.loggedInStatus);
   }
 
   
@@ -80,17 +106,23 @@ export default class App extends Component {
     return (
       <div className='app'>
         <Router>
-        <TopNavBar />
-        {this.state.loggedInStatus}
+        <TopNavBar  loggedInStatus={this.state.loggedInStatus} handleSuccessfulLogout={this.handleSuccessfulLogout} />
+        
       
 
       
         <Switch>
-          <Route exact path="/" component={Home}/>
-          <Route exact path="/blogs" component={Blog}/>
-          <Route exact path="/blog/:id" component={BlogDetail}/>
-          <Route exact path="/about" component={About}/>
-          <Route exact path="/auth" 
+          <Route exact path="/"render={(props) => <Home {... props} loggedInStatus={this.state.loggedInStatus} /> }/>
+
+
+          <Route  path="/blogs" render={(props) => <Blog {... props} loggedInStatus={this.state.loggedInStatus} /> }/>
+
+
+          <Route  path="/blog/:id" 
+          render={props =>( <BlogDetail {...props} loggedInStatus={this.state.loggedInStatus} />)}
+          />
+          <Route  path="/about" component={About}/>
+          <Route  path="/auth" 
           render={props => (
           <Auth
           {...props}

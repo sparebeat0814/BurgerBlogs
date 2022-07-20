@@ -13,7 +13,7 @@ export default class BlogDetail extends Component {
     }
 
     getBlogItem() {
-        axios.get(`http://localhost:5000/blog/${this.state.currentId}`)
+        axios.get(`https://burgerblogs.herokuapp.com/blog/${this.state.currentId}`)
         .then(response => {
             console.log("response", response);
             this.setState({
@@ -35,6 +35,9 @@ export default class BlogDetail extends Component {
             content,
             imageURL
         } = this.state.blogItem
+        // if (this.props && this.props.loggedInStatus === "LOGGED_IN") {
+        //     <BlogForm />
+        // }
         return (
             <div className='blog-container'>
             <div className='content-container'>

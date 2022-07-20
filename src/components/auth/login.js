@@ -25,7 +25,7 @@ export default class Login extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        axios.post("http://localhost:5000/token",
+        axios.post("https://burgerblogs.herokuapp.com/token",
         {
                 username: this.state.email,
                 password: this.state.password

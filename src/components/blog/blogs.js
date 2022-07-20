@@ -7,6 +7,7 @@ import BlogModal from "../modals/blog-modal";
 
 
 
+
 class Blog extends Component {
   constructor() {
     super();
@@ -26,6 +27,21 @@ class Blog extends Component {
     this.handleNewBlogClick = this.handleNewBlogClick.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
     this.handleSuccessfulBlogSubmission = this.handleSuccessfulBlogSubmission.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
+  }
+
+  handleDeleteClick(blog) {
+    axios.delete(`https://burgerblogs.herokuapp.com/blog/${blog.id}`)
+    .then(response => {
+      // console.log("blog res from delete", response)
+      this.setState({
+        blogItems: this.state.blogItems.filter(blogItem => {
+          return blog.id != blogItem.id
+        })
+      })
+    }).catch(error => {
+      console.log("error", error)
+    })
   }
 
   handleSuccessfulBlogSubmission(blog) {
@@ -52,12 +68,13 @@ class Blog extends Component {
       currentpage: this.state.currentpage + 1
     })
  
-        axios.get(`http://localhost:5000/blogs?page=${this.state.currentpage}` 
+        axios.get(`https://burgerblogs.herokuapp.com/blogs?page=${this.state.currentpage}` 
         // add { withCredentials: true } next to the URL so it does auth stuff
         ).then(response => {
+          // console.log("response", response)
           this.setState({
-            blogItems: this.state.blogItems.concat(response.data),
-            totalCount: response.data.total_records,
+            blogItems: response.data,
+            totalCount: response.data,
             isLoading: false
           })
         }).catch(error => {
@@ -69,6 +86,7 @@ class Blog extends Component {
 
   componentDidMount() {
     this.getBlogItems();
+    console.log("----->",this.props.loggedInStatus);
   }
 
   componentWillUnmount() {
@@ -89,17 +107,32 @@ class Blog extends Component {
   
   render() {
     const blogRecords = this.state.blogItems.map(blogItem => {
-      return <BlogItem key={blogItem.id} blogItem ={blogItem}/>
+      if (this.props.loggedInStatus === "LOGGED_IN") {
+        return(
+          <div key={blogItem.id} className="admin-blog-wrapper">
+            <BlogItem  blogItem={blogItem} />
+            <a onClick={() => this.handleDeleteClick(blogItem)}>
+              <FontAwesomeIcon icon="ban" />
+            </a>
+          </div>
+        )
+      } else {
+
+      return <BlogItem key={blogItem.id} blogItem ={blogItem}/>}
     })
 
+    
+
     return (
-      <div className="blog-container">
-        <BlogModal getBlogItems={this.getBlogItems} handleSuccessfulBlogSubmission={this.handleSuccessfulBlogSubmission} handleModalClose={this.handleModalClose} modalIsOpen={this.state.blogModalisOpen}/>
+      <div>
         <div className="newbloglink">
-          <a onClick={this.handleNewBlogClick}>
-            Open Modal
-          </a>
+        {this.props.loggedInStatus === "LOGGED_IN" ? ( <a onClick={this.handleNewBlogClick}>
+            <FontAwesomeIcon icon="floppy-disk" />
+          </a> ) : null}
         </div>
+      <div className="blog-container">
+        <BlogModal handleSuccessfulBlogSubmission={this.handleSuccessfulBlogSubmission} handleModalClose={this.handleModalClose} modalIsOpen={this.state.blogModalisOpen}/>
+
         <div className="content-container">
           <h1>BLOG INDEX</h1>
         {blogRecords}
@@ -109,6 +142,7 @@ class Blog extends Component {
           <FontAwesomeIcon icon="spinner" spin/>
         </div>
         ) : null}
+      </div>
       </div>
     )
   }

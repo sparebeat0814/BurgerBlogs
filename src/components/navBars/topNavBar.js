@@ -1,7 +1,22 @@
-import React, { Component } from 'react';
+// import { response } from 'express';
+import React from 'react';
+import { withRouter } from 'react-router';
 
-export default class TopNavBar extends Component {
-  render() {
+
+
+const TopNavBar = props => {
+    
+
+
+     const handleSignOut = () => {
+        // if(response.status === 200) {
+        props.history.push("/");
+        props.handleSuccessfulLogout();
+        // }
+        // return response.data
+    }
+
+  
     return (
     <div className='navBar-wrapper'>
         <div className='logo'>
@@ -31,8 +46,12 @@ export default class TopNavBar extends Component {
             {/* <NavLink exact to="/about" /> */}
         </div>
         </div>
+        <div className='logout'>           
+            {props.loggedInStatus === "LOGGED_IN" ? ( <a onClick={handleSignOut}>Sign Out</a> ) : null}
+        </div>
         </div>
 
     );
   }
-}
+
+export default withRouter(TopNavBar);

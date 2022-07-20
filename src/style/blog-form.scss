@@ -1,49 +1,56 @@
-.blog-form-wrapper {
-    display: grid;
-    gap: 21px;
-    grid-template-columns: 1fr;
-    padding: 42px;
+.blog-form {
 
-    input {
-        color: black;
-        padding: 5px 0px;
-        width: 100%;
-        border-top: 0px;
-        border-right: 0px;
-        border-left: 0px;
-        border-bottom: 1px solid black;
-        background-color: transparent;
-        transition: 0.5s all ease-in-out;
-        font-size: 1.1em;
-        margin-bottom: 21px;
-  
-        &:focus {
-          outline: none;
-          border-bottom: 1px solid black;
+    padding: 20px;
+    
+    .two-column {
+        
+
+        input {
+            width: 100%;
+            height: 20px;
+            padding: 10px;
+            border-right: none;
+            border-top: none;
+            border-radius: 5px;
+            border-width: 5px;
+            border-color: $purple;
+            border-left-color: $lightPurple;
         }
-      }
-    input {
-        margin-bottom: 0px;
+
+        .content-box {
+            margin-top: 5px;
+            width: 97%;
+            height: 150px;
+        }
+        
+        .top-column {
+            display: flex;
+            justify-content: center;
+
+            
+        }
     }
 
-    .image-uploaders {
-        .one-column {
-            display: grid;
-            gap: 21px;
-            grid-template-columns: 1fr;
+    .save-btn {
+        width: 100%;
+        height: 35px;
+        margin-top: 10px;
+
+        transition: ease-in-out 0.5s;
+
+        &:hover {
+            color: $white;
         }
+    }
+
+    button {
+        background-color: $orange;
+        border-radius: 5px;
         
-        .two-column {
-            display: grid;
-            gap: 21px;
-            grid-template-columns: 1fr 1fr;
+        transition: ease-in-out 0.5s;
+
+        &:hover {
+            background-color: #ac5c00;
         }
-        
-        .three-column {
-            display: grid;
-            gap: 21px;
-            grid-template-columns: 1fr 1fr 1fr;
-        }
-        grid-template-columns: 200px;
     }
 }
