@@ -45,6 +45,10 @@ const TopNavBar = props => {
             <a href="/about"> About </a>
             {/* <NavLink exact to="/about" /> */}
         </div>
+        <div className='nav-links'>
+            <a href="/contact"> Contact Us </a>
+            {/* <NavLink exact to="/about" /> */}
+        </div>
         </div>
         <div className='logout'>           
             {props.loggedInStatus === "LOGGED_IN" ? ( <a onClick={handleSignOut}>Sign Out</a> ) : null}

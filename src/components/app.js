@@ -6,7 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faSpinner,
   faBan,
-  faFloppyDisk
+  faFloppyDisk,
+  // faPaperPlaneTop
 } from "@fortawesome/free-solid-svg-icons";
 
 import TopNavBar from './navBars/topNavBar';
@@ -17,6 +18,7 @@ import About from './about';
 import Auth from './auth/auth';
 import Blog from './blog/blogs';
 import BlogDetail from './blog/blogdetail';
+import Contact from './contact';
 import { library } from '@fortawesome/fontawesome-svg-core';
 
 
@@ -122,6 +124,7 @@ export default class App extends Component {
           render={props =>( <BlogDetail {...props} loggedInStatus={this.state.loggedInStatus} />)}
           />
           <Route  path="/about" component={About}/>
+          <Route path="/contact" component={Contact}/>
           <Route  path="/auth" 
           render={props => (
           <Auth
@@ -141,6 +144,8 @@ export default class App extends Component {
             <NavLink exact to="/" />
             <NavLink exact to="/blogs" />
             <NavLink exact to="/about" />
+            <NavLink exact to="/contact" />
+
         </Router>
       </div>
     );

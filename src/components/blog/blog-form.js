@@ -63,7 +63,7 @@ export default class BlogForm extends Component {
                     <input onChange={this.handleChange} type="text" name="title" placeholder='Title' value={this.state.title}/>
                     <input onChange={this.handleChange} type="text" name="imageURL" placeholder='image' value={this.state.imageURL}/>
                     </div>
-                    <input className="content-box" onChange={this.handleChange} type="text" name="content" placeholder='Content' value={this.state.content}/>
+                    <textarea className="content-box" onChange={this.handleChange} type="text" name="content" placeholder='Content' value={this.state.content}/>
                     </div>
                     <button className='save-btn'>Save</button>
                 </form>
